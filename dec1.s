@@ -30,10 +30,10 @@ getchar:
 	MOV R7, #3 				@ writing syscall, 4
 	MOV R0, #0				@ output the stream to the monitor, 1
 	MOV R2, #1				@ reading a single character
-	LDR R1, =read_char		@ storing the character in data memory
+	LDR R1, =read_char			@ storing the character in data memory
 	SWI 0					@ executing the system call
-	LDR R0, [R1]			@ moveing the character to the return register
-	AND R0, #0xFF			@ mask out all but the lowest 8 bits
+	LDR R0, [R1]				@ moveing the character to the return register
+	AND R0, #0xFF				@ mask out all but the lowest 8 bits
 	MOV PC, LR 				@ return
 
 
@@ -71,12 +71,15 @@ printing:
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
-abs: 
-	sra r8,r4,31   
-	xor r4,r4,r8   
-	sub r4,r4,r8   
-	@ r4 now has the absolute value now need to print 
-	MOV PC, LR
+abs:
+	CMP R8,R1,#0
+	SLT R6,R5,#0
+	BEQ print_abs
+	SUB R5,#0,R5
+
+
+	
+	
 
 subtracting:
 	SUB R0, R1, R3
@@ -97,3 +100,4 @@ maximize:
 format_str:		.asciz		"%d"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
+print_abs:              .asciz          "%d\n
