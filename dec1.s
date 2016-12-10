@@ -124,5 +124,5 @@ maximize:
 format_str:		.asciz		"%d"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-print_abs                .asciz       "%d\n"
+print_abs:                .asciz       "%d\n"
 printf_str1:              .asciz          "%f\n"
