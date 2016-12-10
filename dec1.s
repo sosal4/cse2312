@@ -17,7 +17,7 @@ main:
 	VMOV S0, R0             @ move return value R0 to FPU register S0
     	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
     	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
-	BL _printf
+	BL _print1f
 	
 
 	BL getchar
@@ -95,7 +95,7 @@ printabs:
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
-_printf:
+_print1f:
     PUSH {LR}               @ push LR to stack
     LDR R0, =printf_str1     @ R0 contains formatted string address
     BL printf               @ call printf
@@ -124,4 +124,5 @@ maximize:
 format_str:		.asciz		"%d"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
+print_abs                .asciz       "%d\n"
 printf_str1:              .asciz          "%f\n"
