@@ -81,16 +81,13 @@ abs:
 	
 print_abs:
 	MOV R4, LR 				@ store LR since printf call overwrites
-	LDR R0, =print_str		@ R0 contains formatted string address
+	LDR R0, =print_abs			@ R0 contains formatted string address
 	MOV R1, R5				@ R8 contains printf argument (redundant line)
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
         		
 
-
-	
-	
 
 subtracting:
 	SUB R0, R1, R3
