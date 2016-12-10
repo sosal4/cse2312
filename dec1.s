@@ -24,7 +24,7 @@ main:
 	MOV R10, R0
 		
 					
-	@MOV R1, R1
+	MOV R1, R1
 	MOV R2,	R10
 					
 	BL comparing
