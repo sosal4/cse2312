@@ -23,7 +23,7 @@ main:
 	@MOV R3, R8
 	BL comparing
 	MOV R12, R0
-	BL printing
+	@BL printing
 	B main
 
 getchar:
@@ -36,11 +36,6 @@ getchar:
 	AND R0, #0xFF				@ mask out all but the lowest 8 bits
 	MOV PC, LR 				@ return
 
-
-
-
-
-	
 	
 _scanf:
 	MOV R4, LR 				@ store LR since scanf call overwrites
@@ -70,11 +65,7 @@ abs:
 	SUB R5, R6, R5
 	BL printabs
 	
-	
-	
-	
-	
-	
+		
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, =print_abs			@ R0 contains formatted string address
