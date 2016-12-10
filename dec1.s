@@ -13,12 +13,12 @@
 
 main:
 	BL _scanf				@ branch to scanf prodecure with return
-	MOV R9, R0				
+	VMOV R9, R0				
 	BL getchar
 	MOV R10, R0
 	@BL _scanf
 	@MOV R8, R0
-	MOV R1, R9
+	VMOV R1, R9
 	MOV R2,	R10
 	@MOV R3, R8
 	BL comparing
@@ -35,6 +35,20 @@ getchar:
 	LDR R0, [R1]				@ moveing the character to the return register
 	AND R0, #0xFF				@ mask out all but the lowest 8 bits
 	MOV PC, LR 				@ return
+	
+	
+comparing:
+	MOV R4, LR
+	CMP R2, #'a'			@ comparing against the constant char '+'
+	BLEQ abs				@ branch to make equal handler
+	CMP R2, #'-'			@ comparing against the constatn char '-'
+	BLEQ subtracting				@ branch to equal handler
+	CMP R2, #'*'			@ compare against the constatn char '*'
+	BLEQ multiplying				@ branch to equal handler
+	CMP R2, #'M'			@ compare against the constatn char 'M'
+	BLEQ maximize				@ branch to equal handler
+	MOV PC, R4		
+	
 
 	
 _scanf:
@@ -90,17 +104,7 @@ maximize:
 	MOVLT R0, R3
 	MOV PC, LR
 	
-comparing:
-	MOV R4, LR
-	CMP R2, #'a'			@ comparing against the constant char '+'
-	BLEQ abs				@ branch to make equal handler
-	CMP R2, #'-'			@ comparing against the constatn char '-'
-	BLEQ subtracting				@ branch to equal handler
-	CMP R2, #'*'			@ compare against the constatn char '*'
-	BLEQ multiplying				@ branch to equal handler
-	CMP R2, #'M'			@ compare against the constatn char 'M'
-	BLEQ maximize				@ branch to equal handler
-	MOV PC, R4	
+
 
 
 .data
