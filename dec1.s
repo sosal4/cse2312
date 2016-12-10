@@ -97,7 +97,7 @@ printabs:
 
 _printf:
     PUSH {LR}               @ push LR to stack
-    LDR R0, =printf_str     @ R0 contains formatted string address
+    LDR R0, =printf_str1     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ pop LR from stack and return
         		
@@ -124,4 +124,4 @@ maximize:
 format_str:		.asciz		"%d"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-_printf:              .asciz          "%f\n"
+printf_str1:              .asciz          "%f\n"
