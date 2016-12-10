@@ -72,10 +72,10 @@ printing:
 	MOV PC, R4				@ return
 
 abs:
-	CMP R8,R1,#0
-	SLT R6,R5,#0
+	CMP R8, R1, #0
+	SLT R6, R5, #0
 	BEQ print_abs
-	SUB R5,#0,R5
+	SUB R5, #0, R5
 
 
 	
