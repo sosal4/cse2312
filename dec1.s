@@ -79,11 +79,11 @@ printing:
 	MOV PC, R4				@ return
 
 abs:
-	MOV R5, R1
+	VMOV R5, R1
 	CMP R5, #0
 	BEQ printabs
 	BGT printabs
-	MOV R6, #0
+	VMOV R6, #0
 	SUB R5, R6, R5
 	
 	
@@ -91,7 +91,7 @@ abs:
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, =print_abs			@ R0 contains formatted string address
-	MOV R1, R5				@ R8 contains printf argument (redundant line)
+	VMOV R1, R5				@ R8 contains printf argument (redundant line)
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
