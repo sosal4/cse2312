@@ -73,10 +73,12 @@ printing:
 
 abs:
 	MOV R5, R1
-	slt R6, R5, #0
-	CMP R6, #0
+	CMP R5, #0
 	BEQ printabs
+	BGT printabs
 	SUB R5, #0, R5
+	BL printabs
+	
 	
 	
 printabs:
