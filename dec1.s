@@ -73,7 +73,7 @@ printing:
 
 abs:
 	MOV R5, R1
-	SLT R6, R5, #0
+	SLTI R6, R5, #0
 	CMP R6, #0
 	BEQ print_abs
 	SUB R5, #0, R5
@@ -108,4 +108,4 @@ maximize:
 format_str:		.asciz		"%d"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-print_abs:              .asciz          "%d\n
+print_abs:              .asciz          "%d\n"
