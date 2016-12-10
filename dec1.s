@@ -23,13 +23,15 @@ main:
 	MOV R10, R0
 		
 					
-	@MOV R1, R9
+	@MOV R1, R1
 	MOV R2,	R10
 					
 	BL comparing
 	MOV R12, R0
 	BL printing
 	B main
+	
+
 
 getchar:
 	MOV R7, #3 				@ writing syscall, 4
