@@ -76,7 +76,8 @@ abs:
 	CMP R5, #0
 	BEQ printabs
 	BGT printabs
-	SUBU R5, #0, R5
+	MOV R6, #0
+	SUB R5, R6, R5
 	BL printabs
 	
 	
