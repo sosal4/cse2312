@@ -75,11 +75,11 @@ abs:
 	MOV R5, R1
 	slt R6, R5, #0
 	CMP R6, #0
-	BEQ print_abs
+	BEQ printabs
 	SUB R5, #0, R5
 	
 	
-print_abs:
+printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, =print_abs			@ R0 contains formatted string address
 	MOV R1, R5				@ R8 contains printf argument (redundant line)
