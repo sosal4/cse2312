@@ -13,12 +13,11 @@
 
 main:
 	BL _scanf				@ branch to scanf prodecure with return
-	MOV R9, R0
-	VMOV S0, R0             		@ move the numerator to floating point register
-	VCVT.F32.U32 S0, S0     		@ convert unsigned bit representation to single float
-	VCVT.F64.F32 D4, S0     		@ covert the result to double precision for printing
-	VMOV R1, R2, D4         		@ split the double VFP register into two ARM registers
-
+	@MOV R9, R0
+	VMOV S0, R0             @ move return value R0 to FPU register S0
+    	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
+    	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
+	
 
 	BL getchar
 	MOV R10, R0
