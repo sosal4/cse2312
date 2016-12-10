@@ -39,17 +39,7 @@ getchar:
 
 
 
-comparing:
-	MOV R4, LR
-	CMP R2, #'a'			@ comparing against the constant char '+'
-	BLEQ abs				@ branch to make equal handler
-	CMP R2, #'-'			@ comparing against the constatn char '-'
-	BLEQ subtracting				@ branch to equal handler
-	CMP R2, #'*'			@ compare against the constatn char '*'
-	BLEQ multiplying				@ branch to equal handler
-	CMP R2, #'M'			@ compare against the constatn char 'M'
-	BLEQ maximize				@ branch to equal handler
-	MOV PC, R4
+
 	
 	
 _scanf:
@@ -82,6 +72,9 @@ abs:
 	
 	
 	
+	
+	
+	
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, =print_abs			@ R0 contains formatted string address
@@ -105,6 +98,18 @@ maximize:
 	MOVGT R0, R1
 	MOVLT R0, R3
 	MOV PC, LR
+	
+comparing:
+	MOV R4, LR
+	CMP R2, #'a'			@ comparing against the constant char '+'
+	BLEQ abs				@ branch to make equal handler
+	CMP R2, #'-'			@ comparing against the constatn char '-'
+	BLEQ subtracting				@ branch to equal handler
+	CMP R2, #'*'			@ compare against the constatn char '*'
+	BLEQ multiplying				@ branch to equal handler
+	CMP R2, #'M'			@ compare against the constatn char 'M'
+	BLEQ maximize				@ branch to equal handler
+	MOV PC, R4	
 
 
 .data
