@@ -63,7 +63,7 @@ abs:
 	BGT printabs
 	MOV R6, #0
 	SUB R5, R6, R5
-	BL printabs
+	@BL printabs
 	
 		
 printabs:
