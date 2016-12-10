@@ -13,12 +13,12 @@
 
 main:
 	BL _scanf				@ branch to scanf prodecure with return
-	VMOV R9, R0				
+	MOV R9, R0				
 	BL getchar
 	MOV R10, R0
 	@BL _scanf
 	@MOV R8, R0
-	VMOV R1, R9
+	MOV R1, R9
 	MOV R2,	R10
 	@MOV R3, R8
 	BL comparing
@@ -71,7 +71,7 @@ printing:
 	MOV PC, R4				@ return
 
 abs:
-	VMOV R5, R1
+	MOV R5, R1
 	CMP R5, #0
 	BEQ printabs
 	BGT printabs
@@ -83,7 +83,7 @@ abs:
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, =print_abs			@ R0 contains formatted string address
-	VMOV R1, R5				@ R8 contains printf argument (redundant line)
+	MOV R1, R5				@ R8 contains printf argument (redundant line)
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
@@ -111,4 +111,4 @@ maximize:
 format_str:		.asciz		"%d"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-print_abs:              .asciz          "%d\n"
+print_abs:              .asciz          "%f\n"
