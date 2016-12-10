@@ -73,7 +73,7 @@ printing:
 
 abs:
 	MOV R5, R1
-	SLTI R6, R5, #0
+	SLT R6, R5, #0
 	CMP R6, #0
 	BEQ print_abs
 	SUB R5, #0, R5
