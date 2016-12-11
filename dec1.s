@@ -14,18 +14,11 @@
 main:
 
 	BL  _scanf              @ branch to scanf procedure with return
-	@MOV R5, R0
-	@MOV R1, R5
 	VMOV S0, R0
 	BL getchar
 	MOV R10, R0
-		
-					
-	@MOV R1, R1
 	MOV R2,	R10
-					
 	BL comparing
-	
 	B main
 	
 
@@ -115,15 +108,17 @@ powerdone:
 	B main
 	
 
-multiplying:
-	MUL R0, R1, R3
-	MOV PC, LR
+inverse:
+	MOV R9, #1
+	VMOV S1, R9
+    	VCVT.F32.U32 S1, S1     @ convert unsigned bit representation to single float
+	VDIV.F32 S2, S1, S0     @ compute S2 = S1 / S0
+   	VCVT.F64.F32 D4, S2     @ covert the result to double precision for printing
+    	VMOV R1, R2, D4         @ split the double VFP register into two ARM registers        
+	BL printing
+	B main
 
-maximize:
-	CMP R1, R3
-	MOVGT R0, R1
-	MOVLT R0, R3
-	MOV PC, LR
+
 	
 
 
