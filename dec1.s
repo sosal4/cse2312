@@ -41,7 +41,7 @@ comparing:
 	CMP R2, #'s'				@ comparing against the constatn char '-'
 	BLEQ sqrt				@ branch to equal handler
 	CMP R2, #'p'				@ compare against the constatn char '*'
-	BLEQ prepower			@ branch to equal handler
+	BLEQ prepower				@ branch to equal handler
 	CMP R2, #'i'				@ compare against the constatn char 'M'
 	BLEQ inverse				@ branch to equal handler
 	MOV PC, R4		
@@ -93,13 +93,9 @@ prepower:
 power:
 	CMP R0, R8
 	BEQ powerdone
-	VMUL.F32 S0, S0, S0      @ compute S2 = S0 * S1
+	VMUL.F32 S0, S0, S0      	@ compute S2 = S0 * S1
 	ADD R0, R0, #1
 	B power
-	
-	
-	
-	
 	
 powerdone:
 	VCVT.F64.F32 D4, S0
