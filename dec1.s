@@ -48,7 +48,7 @@ comparing:
 	CMP R2, #'s'				@ comparing against the constatn char '-'
 	BLEQ sqrt				@ branch to equal handler
 	CMP R2, #'p'				@ compare against the constatn char '*'
-	BLEQ power			@ branch to equal handler
+	BLEQ prepower			@ branch to equal handler
 	CMP R2, #'M'				@ compare against the constatn char 'M'
 	BLEQ maximize				@ branch to equal handler
 	MOV PC, R4		
@@ -89,16 +89,18 @@ sqrt:
 	BL printing
 	B main
 	
-
-
-power:
+prepower:
 	BL _scanf
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R0, #0
+	
+
+
+power:
 	CMP R0, R8
 	BEQ powerdone
-	VMUL.F32 S0, S0, S0     @ compute S2 = S0 * S1
+	VMUL.F32 S0, S0, S0      @ compute S2 = S0 * S1
 	ADD R0, R0, #1
 	B power
 	
