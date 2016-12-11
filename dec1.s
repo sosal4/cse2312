@@ -119,4 +119,4 @@ maximize:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-print_abs:                .asciz       "%f\n"
+print_abs:              .asciz       "%f\n"
