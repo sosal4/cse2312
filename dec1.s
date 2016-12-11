@@ -101,7 +101,6 @@ abs:
 	@VMOV R5, S0
 	@MOV PC, R5
 	@VMOV PC, S0
-	jr ra
 	
 
 printabs:
