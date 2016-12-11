@@ -85,12 +85,12 @@ sqrt:
 prepower:
 	BL _scanf
 	MOV R8, R0
-	SUB R8, R8, #1
-	MOV R0, #1
+	@SUB R8, R8, #1
+	@MOV R0, #1
 	@MOV R5, #1              @ load the denominator
-    	VMOV S1, S0             @ move the denominator to floating point register
+    	@VMOV S1, S0             @ move the denominator to floating point register
     	@VCVT.F32.U32 S1, S1     @ convert unsigned bit representation to single float
-	B power
+	@B power
 	
 power:
 	VMUL.F32 S2, S0, S0     @ compute S2 = S0 * S1
@@ -130,4 +130,4 @@ inverse:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
-val2:           	.float      1.00
+@val2:           	.float      1.00
