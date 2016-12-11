@@ -14,8 +14,8 @@
 main:
 
 	BL  _scanf              @ branch to scanf procedure with return
-	MOV R5, R0
-	MOV R1, R5
+	@MOV R5, R0
+	@MOV R1, R5
 	VMOV S0, R0
 	BL getchar
 	MOV R10, R0
@@ -75,7 +75,7 @@ printing:
 		
 
 abs:
-	MOV R4, LR
+	@MOV R4, LR
 	@VMOV S1, R1
 	@MOV R5, #0
 	@VMOV S1, R5
