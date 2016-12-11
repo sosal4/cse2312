@@ -87,19 +87,22 @@ prepower:
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R4, #0
+	MOV R1, #1              @ load the denominator
+    	VMOV S1, R1             @ move the denominator to floating point register
+    	VCVT.F32.U32 S1, S1     @ convert unsigned bit representation to single float
 	   	
 	
 power:
 	
-	CMP R0, R8
+	CMP R4, R8
 	BEQ powerdone
 	@VLSL S0, S0, S0
-	VMUL.F32 S0, S0, S0      	@ compute S2 = S0 * S1
+	VMUL.F32 S1, S1, S0      	@ compute S2 = S0 * S1
 	ADD R4, R4, #1
 	B power
 	
 powerdone:
-	VCVT.F64.F32 D4, S0
+	VCVT.F64.F32 D4, S1
 	VMOV R1, R2, D4 
 	BL printing
 	B main
