@@ -15,7 +15,7 @@ main:
 	BL _scanf				@ branch to scanf prodecure with return
 	@MOV R9, R0
 	VMOV S0, R0             		@ move return value R0 to FPU register S0
-    	
+    	VCVT.F32.U32 S0, S0
 	
 	
 	BL getchar
@@ -80,14 +80,16 @@ printing:
 	MOV PC, R4				@ return
 
 abs:
-	VMOV R5, S0
+	VCVT.F64.F32 D4, S0
+	@VMOV R5, S0
 	@CMP R5, #0
-	VABS.F64 D2, R5
+	VABS.F64 D2, D4
+	VCVT.F32.F64 S0, D2
 	@MOVEQ R0, R5
 	@MOVGT R0, R5
 	@MOV R6, #0
 	@SUB R0, R6, R5
-	VMOV.F64 PC, D2
+	VMOV.F32 PC, S0
 	
 	
 		
