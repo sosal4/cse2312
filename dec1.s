@@ -12,11 +12,11 @@
 	.func main
 
 main:
-	BL _scanf				@ branch to scanf prodecure with return
-	@MOV R9, R0
-	VMOV S0, R0             @ move return value R0 to FPU register S0
+	BL  _scanf              @ branch to scanf procedure with return
+    	VMOV S0, R0             @ move return value R0 to FPU register S0
     	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
-   	 VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
+    	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
+    	BL  _printf             @ branch to print procedure with return
 	BL printing
 	
 	BL getchar
@@ -74,11 +74,11 @@ _scanf:
 
 
 printing:
-	MOV R4, LR 				@ store LR since printf call overwrites
-	LDR R0, =print_str			@ R0 contains formatted string address
-	@MOV R1, R12				@ R8 contains printf argument (redundant line)
-	BL printf 				@ call printf
-	MOV PC, R4				@ return
+	PUSH {LR}               @ push LR to stack
+    	LDR R0, =print_str     @ R0 contains formatted string address
+    	BL printf               @ call printf
+    	POP {PC}                @ pop LR from stack and return
+		
 
 abs:
 	VCVT.F64.F32 D4, S0
