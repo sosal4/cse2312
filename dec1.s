@@ -82,7 +82,7 @@ printing:
 abs:
 	VMOV D1, S0
 	@CMP R5, #0
-	VABS D2, D1
+	VABS.f64 D2, D1
 	@MOVEQ R0, R5
 	@MOVGT R0, R5
 	@MOV R6, #0
