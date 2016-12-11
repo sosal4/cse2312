@@ -13,6 +13,8 @@
 
 main:
 	BL  _scanf              @ branch to scanf procedure with return
+	MOV R5, R0
+	MOV R1, R5
     	VMOV S0, R0             @ move return value R0 to FPU register S0
     	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
     	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
@@ -80,6 +82,8 @@ printing:
 		
 
 abs:
+	MOV R4, LR
+	VMOV S0, R1
 	VCVT.F64.F32 D4, S0
 	@VMOV R5, S0
 	@CMP R5, #0
