@@ -25,11 +25,7 @@ main:
 	MOV R2,	R10
 					
 	BL comparing
-	VMOV S1, R0
-	VCVT.F64.F32 D1, S1     		@ convert the result to double precision for printing
-    	VMOV R1, R2, D1         		@ split the double VFP register into two ARM registers
-	@MOV R12, R0
-	BL printing
+	
 	B main
 	
 
@@ -101,15 +97,6 @@ abs:
 	@VMOV R5, S0
 	@MOV PC, R5
 	@VMOV PC, S0
-	
-
-printabs:
-	MOV R4, LR 				@ store LR since printf call overwrites
-	LDR R0, = print_abs			@ R0 contains formatted string address
-	@VMOV S0, R5				@ R8 contains printf argument (redundant line)
-	
-	BL printf 				@ call printf
-	MOV PC, R4				@ return
 
 
 subtracting:
@@ -133,4 +120,4 @@ maximize:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
-print_abs:              .asciz       "%f\n"
+@print_abs:              .asciz       "%f\n"
