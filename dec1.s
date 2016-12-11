@@ -80,14 +80,14 @@ printing:
 	MOV PC, R4				@ return
 
 abs:
-	VMOV D1, S0
+	VMOV.F64 D1, S0
 	@CMP R5, #0
-	VABS.f64 D2, D1
+	VABS.F64 D2, D1
 	@MOVEQ R0, R5
 	@MOVGT R0, R5
 	@MOV R6, #0
 	@SUB R0, R6, R5
-	VMOV PC, D2
+	VMOV.F64 PC, D2
 	
 	
 		
