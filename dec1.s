@@ -82,6 +82,7 @@ printing:
 abs:
 	VMOV R5, S0
 	CMP R5, #0
+	VABS R0, R5
 	@VMOVEQ R5, R5
 	@VMOVGT R5, R5
 	@VMOV R6, #0
