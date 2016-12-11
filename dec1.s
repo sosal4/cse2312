@@ -87,9 +87,9 @@ prepower:
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R0, #0
-	MOV R4, #1
-	VLDR S1, [R4]           @ load the value into the VFP register
-	
+    	LDR R0, =val2           @ load variable address
+	VLDR S1, [R0]           @ load the value into the VFP register
+
 	
 
 
@@ -127,3 +127,4 @@ inverse:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
+val2:           	.float      1.0
