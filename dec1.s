@@ -16,7 +16,7 @@ main:
 	BL  _scanf              @ branch to scanf procedure with return
 	MOV R5, R0
 	MOV R1, R5
-	MOV S0, R0
+	VMOV S0, R0
 	BL getchar
 	MOV R10, R0
 		
