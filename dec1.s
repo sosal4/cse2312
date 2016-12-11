@@ -14,9 +14,8 @@
 main:
 	BL _scanf				@ branch to scanf prodecure with return
 	@MOV R9, R0
-	VMOV S0, R0             @ move return value R0 to FPU register S0
-    	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
-    	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
+	VMOV S0, R0             		@ move return value R0 to FPU register S0
+    	
 	
 	
 	BL getchar
@@ -27,7 +26,10 @@ main:
 	MOV R2,	R10
 					
 	BL comparing
-	MOV R12, R0
+	VMOV S1, R0
+	VCVT.F64.F32 D1, S1     		@ convert the result to double precision for printing
+    	VMOV R1, R2, D1         		@ split the double VFP register into two ARM registers
+	@MOV R12, R0
 	BL printing
 	B main
 	
@@ -72,25 +74,26 @@ _scanf:
 
 printing:
 	MOV R4, LR 				@ store LR since printf call overwrites
-	LDR R0, =print_str		@ R0 contains formatted string address
+	LDR R0, =print_str			@ R0 contains formatted string address
 	MOV R1, R12				@ R8 contains printf argument (redundant line)
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
 abs:
-	VMOV R5, R1
+	VMOV R5, S0
 	CMP R5, #0
-	BEQ printabs
-	BGT printabs
+	VMOVEQ R5, R5
+	VMOVGT R5, R5
 	VMOV R6, #0
-	SUB R5, R6, R5
+	VSUB R5, R6, R5
 	
 	
 		
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
-	LDR S0, = print_abs			@ R0 contains formatted string address
-	VMOV R1, R5				@ R8 contains printf argument (redundant line)
+	LDR R0, = print_abs			@ R0 contains formatted string address
+	VMOV S0, R5				@ R8 contains printf argument (redundant line)
+	
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
@@ -118,4 +121,4 @@ maximize:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-print_abs:                .asciz       "%f\n"
+print_abs:              .asciz          "%f\n"
