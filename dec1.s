@@ -87,9 +87,9 @@ prepower:
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R4, #0
-	@LDR R0, =val2           @ load variable address
-	@VLDR S1, [R0]           @ load the value into the VFP register
-    	
+	MOV R6, #1              @ load the denominator
+    	VMOV S1, R6             @ move the denominator to floating point register
+        VCVT.F32.U32 S1, S1     @ convert unsigned bit representation to single float    	
 	
 power:
 	
