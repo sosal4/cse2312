@@ -93,7 +93,8 @@ prepower:
 power:
 	CMP R0, R8
 	BEQ powerdone
-	VMUL.F32 S0, S0, S0      	@ compute S2 = S0 * S1
+	VLSL S0, S0, S0
+	@VMUL.F32 S0, S0, S0      	@ compute S2 = S0 * S1
 	ADD R0, R0, #1
 	B power
 	
