@@ -86,19 +86,18 @@ prepower:
 	BL _scanf
 	MOV R8, R0
 	SUB R8, R8, #1
-	MOV R0, #0
-    	
-	
-
-
-power:
+	MOV R4, #0
 	LDR R0, =val2           @ load variable address
 	VLDR S1, [R0]           @ load the value into the VFP register
+    	
+	
+power:
+	
 	CMP R0, R8
 	BEQ powerdone
 	@VLSL S0, S0, S0
 	VMUL.F32 S1, S1, S0      	@ compute S2 = S0 * S1
-	ADD R0, R0, #1
+	ADD R4, R4, #1
 	B power
 	
 powerdone:
