@@ -47,8 +47,8 @@ comparing:
 	BLEQ abs				@ branch to make equal handler
 	CMP R2, #'s'				@ comparing against the constatn char '-'
 	BLEQ sqrt				@ branch to equal handler
-	CMP R2, #'*'				@ compare against the constatn char '*'
-	BLEQ multiplying			@ branch to equal handler
+	CMP R2, #'p'				@ compare against the constatn char '*'
+	BLEQ power			@ branch to equal handler
 	CMP R2, #'M'				@ compare against the constatn char 'M'
 	BLEQ maximize				@ branch to equal handler
 	MOV PC, R4		
@@ -91,9 +91,27 @@ sqrt:
 	
 
 
-subtracting:
-	SUB R0, R1, R3
-	MOV PC, LR
+power:
+	BL _scanf
+	MOV R8, R0
+	SUB R8, R8, #1
+	MOV R0, #0
+	CMP R0, R8
+	BEQ powerdone
+	VMUL.F32 S0, S0, S0     @ compute S2 = S0 * S1
+	ADD R0, R0, #1
+	B power
+	
+	
+	
+	
+	
+powerdone:
+	VCVT.F64.F32 D4, S0
+	VMOV R1, R2, D4 
+	BL printing
+	B main
+	
 
 multiplying:
 	MUL R0, R1, R3
