@@ -85,8 +85,9 @@ sqrt:
 prepower:
 	BL _scanf
 	MOV R8, R0
-	SUB R8, R8, #1
+	SUB R8, R8, #2
 	MOV R0, #1
+	VMUL.F32 S1, S0, S0
 	
 
 
