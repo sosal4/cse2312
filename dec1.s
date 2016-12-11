@@ -12,14 +12,12 @@
 	.func main
 
 main:
+
 	BL  _scanf              @ branch to scanf procedure with return
 	MOV R5, R0
 	MOV R1, R5
-    	VMOV S0, R0             @ move return value R0 to FPU register S0
-    	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
-    	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
-	BL printing
-	
+	LDR R0, =val1           @ load variable address
+    	VLDR S0, [R0]           @ load the value into the VFP register
 	BL getchar
 	MOV R10, R0
 		
