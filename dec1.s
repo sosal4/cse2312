@@ -83,10 +83,10 @@ abs:
 	VMOV R5, S0
 	CMP R5, #0
 	@VABS R0, R5
-	VMOVEQ R0, R5
-	VMOVGT R0, R5
-	VMOV R6, #0
-	VSUB R0, R6, R5
+	MOVEQ R0, R5
+	MOVGT R0, R5
+	MOV R6, #0
+	SUB R0, R6, R5
 	
 	
 		
