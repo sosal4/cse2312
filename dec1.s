@@ -26,7 +26,7 @@ main:
 	MOV R2,	R10
 					
 	BL comparing
-	VMOV S1, R0
+	VMOV S1, S0
 	VCVT.F64.F32 D1, S1     		@ convert the result to double precision for printing
     	VMOV R1, R2, D1         		@ split the double VFP register into two ARM registers
 	@MOV R12, R0
