@@ -48,13 +48,13 @@ getchar:
 	
 comparing:
 	MOV R4, LR
-	CMP R2, #'a'			@ comparing against the constant char '+'
+	CMP R2, #'a'				@ comparing against the constant char '+'
 	BLEQ abs				@ branch to make equal handler
-	CMP R2, #'-'			@ comparing against the constatn char '-'
-	BLEQ subtracting				@ branch to equal handler
-	CMP R2, #'*'			@ compare against the constatn char '*'
-	BLEQ multiplying				@ branch to equal handler
-	CMP R2, #'M'			@ compare against the constatn char 'M'
+	CMP R2, #'-'				@ comparing against the constatn char '-'
+	BLEQ subtracting			@ branch to equal handler
+	CMP R2, #'*'				@ compare against the constatn char '*'
+	BLEQ multiplying			@ branch to equal handler
+	CMP R2, #'M'				@ compare against the constatn char 'M'
 	BLEQ maximize				@ branch to equal handler
 	MOV PC, R4		
 	
@@ -62,12 +62,12 @@ comparing:
 	
 _scanf:
 	MOV R4, LR 				@ store LR since scanf call overwrites
-	SUB SP, SP, #4			@ make romm on stack
-	LDR R0, =format_str		@ R0 contains address of format string
+	SUB SP, SP, #4				@ make romm on stack
+	LDR R0, =format_str			@ R0 contains address of format string
 	MOV R1, SP 				@ move SP to R1 to store entry on stack
 	BL scanf 				@ call scanf
-	LDR R0, [SP]  			@ load value at SP into R0
-	ADD SP, SP, #4			@ restore the stack pointer
+	LDR R0, [SP]  				@ load value at SP into R0
+	ADD SP, SP, #4				@ restore the stack pointer
 	MOV PC, R4				@ return
 
 
@@ -121,8 +121,5 @@ maximize:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
-<<<<<<< HEAD
 print_abs:              .asciz       "%f\n"
-=======
 print_abs:              .asciz          "%f\n"
->>>>>>> d3d116340e89690b6f3fd2de10dd5f943cbc57a8
