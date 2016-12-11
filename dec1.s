@@ -84,8 +84,8 @@ abs:
 	CMP R5, #0
 	@VMOVEQ R5, R5
 	@VMOVGT R5, R5
-	VMOV R6, #0
-	VSUB R5, R6, R5
+	@VMOV R6, #0
+	@VSUB R5, R6, R5
 	
 	
 		
@@ -122,4 +122,3 @@ format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%d\n"
 print_abs:              .asciz       "%f\n"
-print_abs:              .asciz          "%f\n"
