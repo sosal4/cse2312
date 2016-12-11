@@ -16,8 +16,7 @@ main:
 	BL  _scanf              @ branch to scanf procedure with return
 	MOV R5, R0
 	MOV R1, R5
-	LDR R0, =val1           @ load variable address
-    	VLDR S0, [R0]           @ load the value into the VFP register
+	MOV S0, R0
 	BL getchar
 	MOV R10, R0
 		
@@ -135,5 +134,3 @@ format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
 print_abs:              .asciz       "%f\n"
-val1:           .float      6.14159
-val2:           .float      0.100
