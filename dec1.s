@@ -137,3 +137,5 @@ format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
 print_abs:              .asciz       "%f\n"
+val1:           .float      3.14159
+val2:           .float      0.100
