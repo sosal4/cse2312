@@ -84,13 +84,13 @@ printing:
 abs:
 	MOV R4, LR
 	@VMOV S1, R1
-	MOV R5, #0
-	VMOV S1, R5
-	VSUB.F32 S2, S1, S0
-	VCVT.F64.F32 D2, S2
+	@MOV R5, #0
+	@VMOV S1, R5
+	@VSUB.F32 S2, S1, S0
+	VCVT.F64.F32 D2, S0
 	@VMOV R5, S0
 	@CMP R5, #0
-	@VABS.F64 D2, D4
+	VABS.F64 D2, D4
 	@VCVT.F32.F64 S1, D2
 	
 	@VMOV S0, R0             @ move return value R0 to FPU register S0
