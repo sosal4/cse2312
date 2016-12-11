@@ -19,12 +19,11 @@ main:
     	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
 	
 	
-
 	BL getchar
 	MOV R10, R0
 		
 					
-	MOV R1, R1
+	@MOV R1, R1
 	MOV R2,	R10
 					
 	BL comparing
@@ -90,7 +89,7 @@ abs:
 		
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
-	LDR R0, =print_abs			@ R0 contains formatted string address
+	LDR S0, = print_abs			@ R0 contains formatted string address
 	VMOV R1, R5				@ R8 contains printf argument (redundant line)
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
