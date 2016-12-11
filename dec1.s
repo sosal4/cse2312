@@ -75,7 +75,7 @@ _scanf:
 printing:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, =print_str			@ R0 contains formatted string address
-	MOV R1, R12				@ R8 contains printf argument (redundant line)
+	@MOV R1, R12				@ R8 contains printf argument (redundant line)
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
 
@@ -96,7 +96,7 @@ abs:
 printabs:
 	MOV R4, LR 				@ store LR since printf call overwrites
 	LDR R0, = print_abs			@ R0 contains formatted string address
-	VMOV S0, R5				@ R8 contains printf argument (redundant line)
+	@VMOV S0, R5				@ R8 contains printf argument (redundant line)
 	
 	BL printf 				@ call printf
 	MOV PC, R4				@ return
