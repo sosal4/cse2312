@@ -87,8 +87,8 @@ prepower:
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R4, #0
-	MOV R1, #1              @ load the denominator
-    	VMOV S1, R1             @ move the denominator to floating point register
+	MOV R5, #1              @ load the denominator
+    	VMOV S1, R5             @ move the denominator to floating point register
     	VCVT.F32.U32 S1, S1     @ convert unsigned bit representation to single float
 	   	
 	
