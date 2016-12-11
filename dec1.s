@@ -84,7 +84,8 @@ printing:
 abs:
 	MOV R4, LR
 	VMOV S1, R1
-	VMOV S2, #0
+	MOV R5, #0
+	VMOV S2, R5
 	VSUB.F32 S1, S2, S1
 	@VCVT.F64.F32 D4, S1
 	@VMOV R5, S0
