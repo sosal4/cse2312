@@ -98,7 +98,13 @@ abs:
 	VMOV PC, S0
 	
 
-
+printabs:
+	MOV R4, LR 				@ store LR since printf call overwrites
+	LDR R0, = print_abs			@ R0 contains formatted string address
+	@VMOV S0, R5				@ R8 contains printf argument (redundant line)
+	
+	BL printf 				@ call printf
+	MOV PC, R4				@ return
 
 
 subtracting:
