@@ -95,7 +95,8 @@ abs:
 	@SUB R0, R6, R5
 	@VMOV R5, S0
 	@MOV PC, R5
-	VMOV PC, S0
+	@VMOV PC, S0
+	jr ra
 	
 
 printabs:
