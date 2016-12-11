@@ -36,13 +36,13 @@ getchar:
 	
 comparing:
 	MOV R4, LR
-	CMP R2, #'a'				@ comparing against the constant char '+'
+	CMP R2, #'a'				@ comparing against the constant char 'a'
 	BLEQ abs				@ branch to make equal handler
-	CMP R2, #'s'				@ comparing against the constatn char '-'
+	CMP R2, #'s'				@ comparing against the constatn char 's'
 	BLEQ sqrt				@ branch to equal handler
-	CMP R2, #'p'				@ compare against the constatn char '*'
+	CMP R2, #'p'				@ compare against the constatn char 'p'
 	BLEQ prepower				@ branch to equal handler
-	CMP R2, #'i'				@ compare against the constatn char 'M'
+	CMP R2, #'i'				@ compare against the constatn char 'i'
 	BLEQ inverse				@ branch to equal handler
 	MOV PC, R4		
 	
