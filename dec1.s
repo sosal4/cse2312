@@ -42,8 +42,8 @@ comparing:
 	BLEQ sqrt				@ branch to equal handler
 	CMP R2, #'p'				@ compare against the constatn char '*'
 	BLEQ prepower			@ branch to equal handler
-	CMP R2, #'M'				@ compare against the constatn char 'M'
-	BLEQ maximize				@ branch to equal handler
+	CMP R2, #'i'				@ compare against the constatn char 'M'
+	BLEQ inverse				@ branch to equal handler
 	MOV PC, R4		
 	
 
