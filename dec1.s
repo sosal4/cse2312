@@ -93,7 +93,7 @@ prepower:
 	BL _scanf
 	MOV R8, R0
 	SUB R8, R8, #1
-	MOV R0, #0
+	MOV R0, #1
 	
 
 
