@@ -89,6 +89,11 @@ abs:
 	@CMP R5, #0
 	VABS.F64 D2, D4
 	VCVT.F32.F64 S0, D2
+	
+	@VMOV S0, R0             @ move return value R0 to FPU register S0
+    	VCVT.F64.F32 D1, S0     @ covert the result to double precision for printing
+    	VMOV R1, R2, D1         @ split the double VFP register into two ARM registers
+	BL printing
 	@MOVEQ R0, R5
 	@MOVGT R0, R5
 	@MOV R6, #0
