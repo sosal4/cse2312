@@ -45,8 +45,8 @@ comparing:
 	MOV R4, LR
 	CMP R2, #'a'				@ comparing against the constant char '+'
 	BLEQ abs				@ branch to make equal handler
-	CMP R2, #'-'				@ comparing against the constatn char '-'
-	BLEQ subtracting			@ branch to equal handler
+	CMP R2, #'s'				@ comparing against the constatn char '-'
+	BLEQ sqrt				@ branch to equal handler
 	CMP R2, #'*'				@ compare against the constatn char '*'
 	BLEQ multiplying			@ branch to equal handler
 	CMP R2, #'M'				@ compare against the constatn char 'M'
@@ -75,29 +75,20 @@ printing:
 		
 
 abs:
-	@MOV R4, LR
-	@VMOV S1, R1
-	@MOV R5, #0
-	@VMOV S1, R5
-	@VSUB.F32 S2, S1, S0
-	VCVT.F64.F32 D4, S0
-	@VMOV R5, S0
-	@CMP R5, #0
-	VABS.F64 D2, D4
-	@VCVT.F32.F64 S1, D2
 	
-	@VMOV S0, R0             @ move return value R0 to FPU register S0
-    	@VCVT.F64.F32 D1, S1     @ covert the result to double precision for printing
-    	VMOV R1, R2, D2         @ split the double VFP register into two ARM registers
+	VCVT.F64.F32 D4, S0
+	VABS.F64 D2, D4
+	VMOV R1, R2, D2         
 	BL printing
-	@MOVEQ R0, R5
-	@MOVGT R0, R5
-	@MOV R6, #0
-	@SUB R0, R6, R5
-	@VMOV R5, S0
-	@MOV PC, R5
-	@VMOV PC, S0
 	B main
+	
+sqrt:
+	VCVT.F64.F32 D4, S0
+	VSQRT.F64 D2, D4
+	VMOV R1, R2, D2         
+	BL printing
+	B main
+	
 
 
 subtracting:
