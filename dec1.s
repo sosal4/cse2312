@@ -87,8 +87,8 @@ prepower:
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R4, #0
-	LDR R0, =val2           @ load variable address
-	VLDR S1, [R0]           @ load the value into the VFP register
+	@LDR R0, =val2           @ load variable address
+	@VLDR S1, [R0]           @ load the value into the VFP register
     	
 	
 power:
