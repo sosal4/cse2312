@@ -97,6 +97,7 @@ abs:
 	@VMOV R5, S0
 	@MOV PC, R5
 	@VMOV PC, S0
+	B main
 
 
 subtracting:
@@ -120,4 +121,3 @@ maximize:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
-@print_abs:              .asciz       "%f\n"
