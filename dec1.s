@@ -107,7 +107,7 @@ power:
 powerdone:
 	VCVT.F64.F32 D4, S1
 	VMOV R1, R2, D4 
-	BL printing
+	@BL printing
 	B main
 	
 
