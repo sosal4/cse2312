@@ -83,11 +83,6 @@ sqrt:
 	B main
 	
 prepower:
-	VMUL.F32 S2, S0, S0     @ compute S2 = S0 * S1
-	VCVT.F64.F32 D4, S2
-	VMOV R1, R2, D4 
-	BL printing
-	
 	BL _scanf
 	MOV R8, R0
 	SUB R8, R8, #1
@@ -98,7 +93,10 @@ prepower:
 	B power
 	
 power:
-	
+	VMUL.F32 S2, S0, S0     @ compute S2 = S0 * S1
+	VCVT.F64.F32 D4, S2
+	VMOV R1, R2, D4 
+	BL printing
 	@CMP R0, R8
 	@BEQ powerdone
 	@VLSL S0, S0, S0
