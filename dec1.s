@@ -2,7 +2,7 @@
 * @file calculator.s
 * @brief simple get keyboard character and compare
 *
-* Simple program of invoking syscall to retrieve a char and two integerd * numbers from keyboard, 
+* Simple program of invoking syscall to retrieve a char and two from keyboard, 
 * and perform the desired operation 
 *
 * @author Sosal Pokhrel   ID:1001202713
@@ -98,10 +98,6 @@ prepower:
 	MOV R8, R0
 	SUB R8, R8, #1
 	MOV R0, #0
-	@MOV R5, #1              	@ load the denominator
-    	@VMOV S1, S0             	@ move the denominator to floating point register
-    	@VCVT.F32.U32 S1, S1     	@ convert unsigned bit representation to single float
-	@B power
 	VMOV S1, S0
 	VMOV S2, S1
 	
