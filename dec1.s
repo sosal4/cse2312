@@ -112,7 +112,7 @@ power:
 	VMUL.F32 S1, S1, S0      	@ compute S2 = S0 * S1
 	ADD R0, R0, #1
 	CMP R0, R8
-	BNEQ power
+	BNE power
 	VCVT.F64.F32 D4, S1
 	VMOV R1, R2, D4 
 	BL printing
