@@ -47,6 +47,17 @@ comparing:
 	MOV PC, R4		
 	
 
+_getInt:
+	MOV R4, LR 				@ store LR since scanf call overwrites
+	SUB SP, SP, #4				@ make romm on stack
+	LDR R0, =int_str			@ R0 contains address of format string
+	MOV R1, SP 				@ move SP to R1 to store entry on stack
+	BL scanf 				@ call scanf
+	LDR R0, [SP]  				@ load value at SP into R0
+	ADD SP, SP, #4				@ restore the stack pointer
+	MOV PC, R4				@ return
+
+
 	
 _scanf:
 	MOV R4, LR 				@ store LR since scanf call overwrites
@@ -83,31 +94,28 @@ sqrt:
 	B main
 	
 prepower:
-	BL _scanf
+	BL _getInt
 	MOV R8, R0
-	@SUB R8, R8, #1
-	@MOV R0, #1
-	@MOV R5, #1              @ load the denominator
-    	@VMOV S1, S0             @ move the denominator to floating point register
-    	@VCVT.F32.U32 S1, S1     @ convert unsigned bit representation to single float
+	SUB R8, R8, #1
+	MOV R0, #0
+	@MOV R5, #1              	@ load the denominator
+    	@VMOV S1, S0             	@ move the denominator to floating point register
+    	@VCVT.F32.U32 S1, S1     	@ convert unsigned bit representation to single float
 	@B power
+	
+	
+	
 	
 power:
-	VMUL.F32 S2, S0, S0     @ compute S2 = S0 * S1
-	VCVT.F64.F32 D4, S2
-	VMOV R1, R2, D4 
-	BL printing
-	@CMP R0, R8
-	@BEQ powerdone
-	@VLSL S0, S0, S0
-	@VMUL.F32 S1, S1, S0      	@ compute S2 = S0 * S1
-	@ADD R0, R0, #1
-	@B power
 	
-powerdone:
+	@VLSL S0, S0, S0
+	VMUL.F32 S1, S1, S0      	@ compute S2 = S0 * S1
+	ADD R0, R0, #1
+	CMP R0, R8
+	BNEQ power
 	VCVT.F64.F32 D4, S1
 	VMOV R1, R2, D4 
-	@BL printing
+	BL printing
 	B main
 	
 
@@ -130,4 +138,5 @@ inverse:
 format_str:		.asciz		"%f"
 read_char:		.ascii		" "
 print_str:		.asciz		"%f\n"
+int_str:		.asciz		"%d"
 @val2:           	.float      1.00
