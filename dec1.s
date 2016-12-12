@@ -94,7 +94,6 @@ sqrt:
 	B main
 	
 prepower:
-	VMOV S1, S0
 	BL _getInt
 	MOV R8, R0
 	SUB R8, R8, #1
@@ -103,6 +102,8 @@ prepower:
     	@VMOV S1, S0             	@ move the denominator to floating point register
     	@VCVT.F32.U32 S1, S1     	@ convert unsigned bit representation to single float
 	@B power
+	VMOV S1, S0
+	VMOV S2, S1
 	
 	
 	
@@ -110,7 +111,7 @@ prepower:
 power:
 	
 	@VLSL S0, S0, S0
-	VMUL.F32 S2, S1, S1      	@ compute S2 = S0 * S1
+	VMUL.F32 S2, S2, S1      	
 	ADD R0, R0, #1
 	CMP R0, R8
 	BNE power
